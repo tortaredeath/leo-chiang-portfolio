@@ -88,7 +88,12 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-8 text-primary;
+    @apply text-3xl md:text-4xl font-bold mb-8 text-primary relative inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full;
   }
 
   .timeline-item {
@@ -102,10 +107,48 @@
 
   .timeline-item:after {
     content: '';
-    @apply absolute left-[5.5px] top-5 w-0.5 h-[calc(100%-16px)] bg-gray-200;
+    @apply absolute left-[5.5px] top-5 w-0.5 h-[calc(100%-16px)] bg-gradient-to-b from-primary to-blue-200;
   }
 
   .timeline-item:last-child:after {
     @apply hidden;
+  }
+}
+
+/* Additional animations */
+.wave-animation {
+  animation: wave 10s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.8);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+/* Card hover effects */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

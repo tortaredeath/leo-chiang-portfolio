@@ -60,21 +60,13 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+				"accordion-down": {
+					from: { height: '0', opacity: '0' },
+					to: { height: 'var(--radix-accordion-content-height)', opacity: '1' }
 				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+				"accordion-up": {
+					from: { height: 'var(--radix-accordion-content-height)', opacity: '1' },
+					to: { height: '0', opacity: '0' }
 				},
 				fadeIn: {
 					'0%': { opacity: '0' },
@@ -83,13 +75,39 @@ export default {
 				slideUp: {
 					'0%': { transform: 'translateY(20px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				pulse: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
+				},
+				float: {
+					'0%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0px)' }
+				},
+				gradientX: {
+					'0%, 100%': { 
+						backgroundPosition: '0% 50%',
+					},
+					'50%': { 
+						backgroundPosition: '100% 50%',
+					}
+				},
+				wave: {
+					'0%': { transform: 'translateX(0) translateZ(0) scaleY(1)' },
+					'50%': { transform: 'translateX(-25%) translateZ(0) scaleY(0.8)' },
+					'100%': { transform: 'translateX(-50%) translateZ(0) scaleY(1)' }
 				}
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
 				fadeIn: 'fadeIn 0.5s ease-out',
-				slideUp: 'slideUp 0.5s ease-out'
+				slideUp: 'slideUp 0.5s ease-out',
+				pulseLight: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				float: 'float 3s ease-in-out infinite',
+				"gradient-x": 'gradientX 10s ease infinite',
+				"wave": 'wave 8s linear infinite'
 			},
 			fontFamily: {
 				sans: ['Roboto', 'Noto Sans TC', 'sans-serif'],
